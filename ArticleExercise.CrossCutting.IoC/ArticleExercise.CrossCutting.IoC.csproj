@@ -15,4 +15,8 @@
       <ProjectReference Include="..\ArticleExercise.Data\ArticleExercise.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Scrutor" Version="3.2.1" />
+    </ItemGroup>
+
 </Project>

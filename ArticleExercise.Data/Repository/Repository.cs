@@ -27,6 +27,8 @@ namespace ArticleExercise.Data.Repository
 
         public void Add(TEntity entity)
         {
+            entity.ModifiedDate = DateTime.Now;
+            entity.CreatedDate = DateTime.Now;
             _dbSet.Add(entity);
             SaveChanges();
         }
@@ -55,19 +57,22 @@ namespace ArticleExercise.Data.Repository
         {
             var entity = _dbSet.Find(id);
             entity.IsDeleted = true;
+            entity.ModifiedDate = DateTime.Now;
             SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
+            entity.ModifiedDate = DateTime.Now;
             _dbSet.Update(entity);
             SaveChanges();
         }
 
         public int SaveChanges()
         {
+            var saveChanges = _context.SaveChanges();
             _context.Dispose();
-            return _context.SaveChanges();
+            return saveChanges;
         }
     }
 }

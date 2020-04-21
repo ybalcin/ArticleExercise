@@ -4,8 +4,8 @@ namespace ArticleExercise.Domain.Core.Models
 {
     public abstract class Entity
     {
-        public string Id { get; set; }
-        public DateTime CreatedDate { get; } = DateTime.Now;
+        public string Id { get; } = Guid.NewGuid().ToString();
+        public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public Guid? CreatedBy { get; set; }
         public Guid? ModifiedBy { get; set; }

@@ -16,6 +16,7 @@ namespace ArticleExercise.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     ModifiedBy = table.Column<Guid>(nullable: true),
@@ -37,6 +38,7 @@ namespace ArticleExercise.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     ModifiedBy = table.Column<Guid>(nullable: true),
@@ -55,6 +57,7 @@ namespace ArticleExercise.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     ModifiedBy = table.Column<Guid>(nullable: true),

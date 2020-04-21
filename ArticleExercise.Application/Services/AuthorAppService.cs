@@ -3,7 +3,7 @@ using ArticleExercise.Application.Interfaces;
 
 namespace ArticleExercise.Application.Services
 {
-    public class AuthorAppService : AppService, IAuthorAppService
+    public class AuthorAppService : IAuthorAppService
     {
         public void Dispose()
         {
