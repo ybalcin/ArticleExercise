@@ -1,6 +1,4 @@
-﻿using ArticleExercise.Data.Configurations;
-using ArticleExercise.Domain.Core.Models;
-using ArticleExercise.Domain.Models;
+﻿using ArticleExercise.Domain.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,9 +7,9 @@ namespace ArticleExercise.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IWebHostEnvironment _env;
+        private readonly IHostingEnvironment _env;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IWebHostEnvironment env)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHostingEnvironment env)
             : base(options)
         {
             _env = env;
@@ -23,11 +21,6 @@ namespace ArticleExercise.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Entity>().HasKey(p => p.Id);
-            // modelBuilder.Entity<Entity>()
-            //     .HasQueryFilter(p => p.IsActive)
-            //     .HasQueryFilter(p => !p.IsDeleted);
-
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArticleExercise.CrossCutting.IoC;
+using ArticleExercise.Web.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,8 @@ namespace ArticleExercise.API
 
             services.AddMvc(options => { options.EnableEndpointRouting = false; })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            
+
+            services.AddAutoMapperSetup();
             RegisterServices(services);
         }
 

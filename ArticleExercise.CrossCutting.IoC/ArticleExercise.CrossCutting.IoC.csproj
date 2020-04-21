@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ArticleExercise.Application\ArticleExercise.Application.csproj" />
       <ProjectReference Include="..\ArticleExercise.Data\ArticleExercise.Data.csproj" />
     </ItemGroup>
 

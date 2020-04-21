@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ArticleExercise.CrossCutting.IoC\ArticleExercise.CrossCutting.IoC.csproj" />
+      <ProjectReference Include="..\ArticleExercise.Web.Core\ArticleExercise.Web.Core.csproj" />
     </ItemGroup>
 
 </Project>
