@@ -13,8 +13,8 @@ namespace ArticleExercise.Domain.Models
         public int Like { get; set; } = 0;
 
         public string AuthorId { get; set; }
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
         public string CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

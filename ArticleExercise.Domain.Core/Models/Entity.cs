@@ -5,11 +5,11 @@ namespace ArticleExercise.Domain.Core.Models
     public abstract class Entity
     {
         public string Id { get; } = Guid.NewGuid().ToString();
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; private set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; }
         public Guid? CreatedBy { get; set; }
         public Guid? ModifiedBy { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; set; }
 
         private bool Equals(Entity other)

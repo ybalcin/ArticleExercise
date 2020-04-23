@@ -16,6 +16,6 @@ namespace ArticleExercise.Domain.Models
         public string Title { get; set; }
         public string Image { get; set; }
 
-        public ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

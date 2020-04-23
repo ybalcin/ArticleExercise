@@ -25,12 +25,12 @@ namespace ArticleExercise.Data.Repository
             GC.SuppressFinalize(this);
         }
 
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             entity.ModifiedDate = DateTime.Now;
-            entity.CreatedDate = DateTime.Now;
             _dbSet.Add(entity);
             SaveChanges();
+            return entity;
         }
 
         public TEntity Find(params object[] keyValues)

@@ -9,9 +9,9 @@
         public string Image2 { get; set; }
         public int Like { get; set; } = 0;
         
-        public string AuthorId { get; set; }
+        // public string AuthorId { get; set; }
         public AuthorViewModel Author { get; set; }
-        public string CategoryId { get; set; }
+        // public string CategoryId { get; set; }
         public CategoryViewModel Category { get; set; }
     }
 }

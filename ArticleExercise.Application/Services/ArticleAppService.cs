@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ArticleExercise.Application.InputModels;
 using ArticleExercise.Application.Interfaces;
 using ArticleExercise.Application.ViewModels;
 using ArticleExercise.Domain.Interfaces;
@@ -30,9 +31,25 @@ namespace ArticleExercise.Application.Services
             return _articleRepository.GetAll().ProjectTo<ArticleViewModel>(_mapper.ConfigurationProvider);
         }
 
-        public void Add(ArticleViewModel model)
+        public void Add(AddArticleToAuthorInputModel model)
         {
-            _articleRepository.Add(_mapper.Map<Article>(model));
+            var viewModel = _mapper.Map<ArticleViewModel>(model);
+            _articleRepository.Add(_mapper.Map<Article>(viewModel));
+        }
+
+        public ArticleViewModel GetArticle(string id)
+        {
+            return _mapper.Map<ArticleViewModel>(_articleRepository.Find(id));
+        }
+
+        public void Like(string id)
+        {
+            _articleRepository.Like(id);
+        }
+
+        public ArticleViewModel GetDetail(string id)
+        {
+            return _mapper.Map<ArticleViewModel>(_articleRepository.GetDetail(id));
         }
     }
 }

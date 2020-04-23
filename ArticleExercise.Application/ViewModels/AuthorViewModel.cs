@@ -6,7 +6,7 @@ namespace ArticleExercise.Application.ViewModels
     {
         public AuthorViewModel()
         {
-            Articles = new HashSet<ArticleViewModel>();
+            // Articles = new HashSet<ArticleViewModel>();
         }
         
         public string FirstName { get; set; }
@@ -14,6 +14,6 @@ namespace ArticleExercise.Application.ViewModels
         public string Title { get; set; }
         public string Image { get; set; }
 
-        public ICollection<ArticleViewModel> Articles { get; set; }
+        // public ICollection<ArticleViewModel> Articles { get; set; }
     }
 }
