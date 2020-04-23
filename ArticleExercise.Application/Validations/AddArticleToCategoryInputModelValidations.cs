@@ -25,7 +25,8 @@ namespace ArticleExercise.Application.Validations
                 .WithMessage("Yazar alanı boş geçilemez");
 
             RuleFor(r => r.AuthorId)
-                .MustBeGuid(r => r.AuthorId);
+                .MustBeGuid(r => r.AuthorId)
+                .When(f => !string.IsNullOrEmpty(f.AuthorId));
         }
     }
 }

@@ -25,7 +25,8 @@ namespace ArticleExercise.Application.Validations
                 .WithMessage("Kategori alanı boş geçilemez");
 
             RuleFor(r => r.CategoryId)
-                .MustBeGuid(r => r.CategoryId);
+                .MustBeGuid(r => r.CategoryId)
+                .When(r => !string.IsNullOrEmpty(r.CategoryId));
         }
     }
 }
