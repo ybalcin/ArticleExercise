@@ -31,7 +31,7 @@ namespace ArticleExercise.Application.Services
             GC.SuppressFinalize(this);
         }
 
-        public CategoryViewModel AddCategory(CategoryInputModel input)
+        public CategoryViewModel AddCategory(AddCategoryInputModel input)
         {
             var viewModel = _mapper.Map<CategoryViewModel>(input);
             var category = _categoryRepository.Add(_mapper.Map<Category>(viewModel));
@@ -60,6 +60,14 @@ namespace ArticleExercise.Application.Services
         {
             return _articleRepository.GetAll(f => f.CategoryId == categoryId)
                 .ProjectTo<ArticleViewModel>(_mapper.ConfigurationProvider);
+        }
+
+        public CategoryViewModel Update(string name, string id)
+        {
+            var category = _categoryRepository.Find(id);
+            category.Name = name;
+            _categoryRepository.Update(category);
+            return _mapper.Map<CategoryViewModel>(category);
         }
     }
 }

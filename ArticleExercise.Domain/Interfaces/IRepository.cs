@@ -15,6 +15,7 @@ namespace ArticleExercise.Domain.Interfaces
         IQueryable<TEntity> GetAll();
         void Remove(string id);
         void Update(TEntity entity);
+        IQueryable<TEntity> Search(string searchText);
         int SaveChanges();
     }
 }

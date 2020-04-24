@@ -1,4 +1,5 @@
-﻿using ArticleExercise.Domain.Models;
+﻿using System.Linq;
+using ArticleExercise.Domain.Models;
 
 namespace ArticleExercise.Domain.Interfaces
 {

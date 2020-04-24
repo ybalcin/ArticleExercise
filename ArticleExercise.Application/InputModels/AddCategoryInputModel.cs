@@ -3,7 +3,7 @@ using ArticleExercise.Application.Validations;
 
 namespace ArticleExercise.Application.InputModels
 {
-    public class CategoryInputModel : BaseInput
+    public class AddCategoryInputModel : BaseInput
     {
         public string Name { get; set; }
         

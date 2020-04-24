@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="QueryModels" />
       <Folder Include="Validations" />
     </ItemGroup>
 

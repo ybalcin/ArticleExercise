@@ -1,4 +1,5 @@
 ﻿using ArticleExercise.Application.Interfaces;
+using ArticleExercise.Application.Services;
 using ArticleExercise.Data.Context;
 using ArticleExercise.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,8 @@ namespace ArticleExercise.CrossCutting.IoC
                     .AsImplementedInterfaces()
                     .WithTransientLifetime()
             );
+
+            services.AddTransient(typeof(ISearchService), typeof(SearchService));
             
             services.AddTransient<ApplicationDbContext>();
         }

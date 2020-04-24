@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ArticleExercise.Data.Context;
 using ArticleExercise.Domain.Interfaces;
 using ArticleExercise.Domain.Models;
@@ -8,10 +9,8 @@ namespace ArticleExercise.Data.Repository
 {
     public class ArticleRepository : Repository<Article>, IArticleRepository
     {
-        private readonly ApplicationDbContext _context;
         public ArticleRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public void Like(string id)
@@ -21,12 +20,20 @@ namespace ArticleExercise.Data.Repository
             Update(article);
         }
 
-        public Article GetDetail(string id)
+        public Article GetWithAuthorAndCategory(string id)
         {
-            return _context.Articles.Where(f => f.Id == id)
+            return Context.Articles.Where(f => f.Id == id)
                 .Include(i => i.Author)
                 .Include(i => i.Category)
                 .FirstOrDefault();
+        }
+
+        public override IQueryable<Article> Search(string searchText)
+        {
+            return DbSet.Where(f =>
+                f.Detail.Contains(searchText) ||
+                f.Title.Contains(searchText) ||
+                f.Topic.Contains(searchText));
         }
     }
 }

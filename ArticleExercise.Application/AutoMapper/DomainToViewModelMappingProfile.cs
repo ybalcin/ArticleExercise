@@ -17,7 +17,7 @@ namespace ArticleExercise.Application.AutoMapper
 
             CreateMap<AddArticleToAuthorInputModel, ArticleViewModel>();
             CreateMap<AuthorInputModel, AuthorViewModel>();
-            CreateMap<CategoryInputModel, CategoryViewModel>();
+            CreateMap<AddCategoryInputModel, CategoryViewModel>();
 
             #endregion
         }

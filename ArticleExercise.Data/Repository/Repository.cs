@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ArticleExercise.Data.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly ApplicationDbContext Context;
+        protected readonly DbSet<TEntity> DbSet;
 
         protected Repository(ApplicationDbContext context)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            Context = context;
+            DbSet = context.Set<TEntity>();
         }
 
         public void Dispose()
@@ -28,34 +28,34 @@ namespace ArticleExercise.Data.Repository
         public TEntity Add(TEntity entity)
         {
             entity.ModifiedDate = DateTime.Now;
-            _dbSet.Add(entity);
+            DbSet.Add(entity);
             SaveChanges();
             return entity;
         }
 
         public TEntity Find(params object[] keyValues)
         {
-            return _dbSet.Find(keyValues);
+            return DbSet.Find(keyValues);
         }
 
         public async Task<TEntity> FindAsync(params object[] keyValues)
         {
-            return await _dbSet.FindAsync(keyValues);
+            return await DbSet.FindAsync(keyValues);
         }
 
         public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> @where)
         {
-            return _dbSet.Where(where);
+            return DbSet.Where(where);
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return _dbSet;
+            return DbSet;
         }
 
         public void Remove(string id)
         {
-            var entity = _dbSet.Find(id);
+            var entity = DbSet.Find(id);
             entity.IsDeleted = true;
             entity.ModifiedDate = DateTime.Now;
             SaveChanges();
@@ -64,14 +64,16 @@ namespace ArticleExercise.Data.Repository
         public void Update(TEntity entity)
         {
             entity.ModifiedDate = DateTime.Now;
-            _dbSet.Update(entity);
+            DbSet.Update(entity);
             SaveChanges();
         }
 
+        public abstract IQueryable<TEntity> Search(string searchText);
+
         public int SaveChanges()
         {
-            var saveChanges = _context.SaveChanges();
-            _context.Dispose();
+            var saveChanges = Context.SaveChanges();
+            Context.Dispose();
             return saveChanges;
         }
     }

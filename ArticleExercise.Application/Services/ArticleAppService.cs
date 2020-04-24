@@ -49,7 +49,12 @@ namespace ArticleExercise.Application.Services
 
         public ArticleViewModel GetDetail(string id)
         {
-            return _mapper.Map<ArticleViewModel>(_articleRepository.GetDetail(id));
+            return _mapper.Map<ArticleViewModel>(_articleRepository.GetWithAuthorAndCategory(id));
+        }
+
+        public void Remove(string id)
+        {
+            _articleRepository.Remove(id);
         }
     }
 }

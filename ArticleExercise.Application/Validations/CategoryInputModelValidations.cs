@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace ArticleExercise.Application.Validations
 {
-    public class CategoryInputModelValidations : AbstractValidator<CategoryInputModel>
+    public class CategoryInputModelValidations : AbstractValidator<AddCategoryInputModel>
     {
         public CategoryInputModelValidations()
         {

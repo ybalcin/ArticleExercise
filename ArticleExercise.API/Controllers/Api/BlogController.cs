@@ -15,13 +15,15 @@ namespace ArticleExercise.API.Controllers.Api
         private readonly ICategoryAppService _categoryAppService;
         private readonly IArticleAppService _articleAppService;
         private readonly IAuthorAppService _authorAppService;
+        private readonly ISearchService _searchService;
 
         public BlogController(ICategoryAppService categoryAppService, IArticleAppService articleAppService,
-            IAuthorAppService authorAppService)
+            IAuthorAppService authorAppService, ISearchService searchService)
         {
             _categoryAppService = categoryAppService;
             _articleAppService = articleAppService;
             _authorAppService = authorAppService;
+            _searchService = searchService;
         }
 
         #region Categories
@@ -37,9 +39,16 @@ namespace ArticleExercise.API.Controllers.Api
         {
             return new OkObjectResult(_categoryAppService.GetCategory(id));
         }
+        
+        [HttpPut("categories/{id}")]
+        public IActionResult UpdateCategory([FromBody] AddCategoryInputModel input ,string id)
+        {
+            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            return new OkObjectResult(_categoryAppService.Update(input.Name, id));
+        }
 
         [HttpPost("categories")]
-        public IActionResult AddCategory(CategoryInputModel input)
+        public IActionResult AddCategory(AddCategoryInputModel input)
         {
             if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
             var category = _categoryAppService.AddCategory(input);
@@ -76,6 +85,14 @@ namespace ArticleExercise.API.Controllers.Api
         public IActionResult GetArticle(string id)
         {
             return new OkObjectResult(_articleAppService.GetDetail(id));
+        }
+        
+        [HttpDelete("articles/{id}")]
+        public IActionResult RemoveArticle(string id)
+        {
+            if (_articleAppService.GetArticle(id) == null) return BadRequest("Article not found");
+            _articleAppService.Remove(id);
+            return Ok();
         }
 
         [HttpPatch("articles/{id}/like")]
@@ -132,5 +149,11 @@ namespace ArticleExercise.API.Controllers.Api
         }
 
         #endregion
+
+        [HttpGet("search/{searchText}")]
+        public IActionResult Search(string searchText)
+        {
+            return Ok(_searchService.Search(searchText));
+        }
     }
 }

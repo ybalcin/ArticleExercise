@@ -11,5 +11,6 @@ namespace ArticleExercise.Application.Interfaces
         ArticleViewModel GetArticle(string id);
         void Like(string id);
         ArticleViewModel GetDetail(string id);
+        void Remove(string id);
     }
 }
