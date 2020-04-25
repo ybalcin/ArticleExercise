@@ -12,10 +12,5 @@ namespace ArticleExercise.Application.InputModels
             ValidationResult = new CategoryInputModelValidations().Validate(this);
             return ValidationResult.IsValid;
         }
-
-        public override string GetErrorMessage()
-        {
-            return ValidationResult.ToString();
-        }
     }
 }

@@ -43,14 +43,14 @@ namespace ArticleExercise.API.Controllers.Api
         [HttpPut("categories/{id}")]
         public IActionResult UpdateCategory([FromBody] AddCategoryInputModel input ,string id)
         {
-            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            if (!input.IsValid()) return BadRequest(input.ValidationMessage);
             return new OkObjectResult(_categoryAppService.Update(input.Name, id));
         }
 
         [HttpPost("categories")]
         public IActionResult AddCategory(AddCategoryInputModel input)
         {
-            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            if (!input.IsValid()) return BadRequest(input.ValidationMessage);
             var category = _categoryAppService.AddCategory(input);
             return Created(new Uri($"{Request.Path}/{category.Id}", UriKind.Relative), category);
         }
@@ -58,7 +58,7 @@ namespace ArticleExercise.API.Controllers.Api
         [HttpPut("categories/{id}/articles")]
         public IActionResult AddArticleToCategory([FromBody] AddArticleToCategoryInputModel input, string id)
         {
-            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            if (!input.IsValid()) return BadRequest(input.ValidationMessage);
             var article = _categoryAppService.AddArticle(input, id);
             return Created($"/articles/{article.Id}", article);
         }
@@ -111,7 +111,7 @@ namespace ArticleExercise.API.Controllers.Api
         [HttpPost("authors")]
         public IActionResult AddAuthor(AuthorInputModel input)
         {
-            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            if (!input.IsValid()) return BadRequest(input.ValidationMessage);
             var author = _authorAppService.Add(input);
             return Created(new Uri($"{Request.Path}/{author.Id}", UriKind.Relative), author);
         }
@@ -131,7 +131,7 @@ namespace ArticleExercise.API.Controllers.Api
         [HttpPut("authors/{id}/articles")]
         public IActionResult AddArticle([FromBody] AddArticleToAuthorInputModel input, string id)
         {
-            if (!input.IsValid()) return BadRequest(input.GetErrorMessage());
+            if (!input.IsValid()) return BadRequest(input.ValidationMessage);
             var author = _authorAppService.GetAuthor(id);
             if (author == null) return BadRequest("Author not found");
 

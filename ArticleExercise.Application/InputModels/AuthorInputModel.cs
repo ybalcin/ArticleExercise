@@ -14,10 +14,5 @@ namespace ArticleExercise.Application.InputModels
             ValidationResult = new AuthorInputModelValidations().Validate(this);
             return ValidationResult.IsValid;
         }
-
-        public override string GetErrorMessage()
-        {
-            return ValidationResult.ToString();
-        }
     }
 }

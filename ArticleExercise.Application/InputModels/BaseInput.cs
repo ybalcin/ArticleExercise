@@ -6,6 +6,6 @@ namespace ArticleExercise.Application.InputModels
     {
         public abstract bool IsValid();
         protected ValidationResult ValidationResult { get; set; }
-        public abstract string GetErrorMessage();
+        public string ValidationMessage => ValidationResult.ToString();
     }
 }
